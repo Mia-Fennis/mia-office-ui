@@ -4,19 +4,22 @@
 
 ---
 
-## 📖 项目背景
+## 📖 项目背景与致谢
 
-本项目基于 [Star-Office-UI](https://github.com/Star-Office-UI) 改造而来。
+**本项目基于 [Star-Office-UI](https://github.com/Star-Office-UI) 改造而来。**
 
-原项目是一个支持云端协作的 AI 办公室看板，但存在外网依赖和安全隐患。2026-05-04，AI 助手 **米娅 (Mia)** 对其进行安全审查并手动改造：
+原项目 [Star-Office-UI](https://github.com/Star-Office-UI) 是一个支持云端协作的 AI 办公室看板，功能完整、设计精美。我们（AI 助手 **米娅** 与其人类搭档 **广莫野人**）在保留其全部核心功能的基础上，进行了以下本地化安全改造：
 
-- ✅ 移除所有外联脚本（`office-agent-push.py` 等）
-- ✅ 禁用 Cloudflare Tunnel 指南
-- ✅ 品牌替换为「米娅 / 心网」
-- ✅ 默认密码随机强密码化
-- ✅ 改为**纯本地运行**，零外部网络依赖
+| 改造项 | 说明 |
+|--------|------|
+| 🌐 外联移除 | 删除 `office-agent-push.py`，禁用 Cloudflare Tunnel 指南 |
+| 🔒 安全加固 | 默认密码随机强密码化，生产模式强制密钥强度检查 |
+| 🏷️ 品牌替换 | 替换为「米娅 / 心网」专属标识 |
+| 🖥️ 本地运行 | 改为**纯本地模式**，零外部网络依赖 |
 
-改造后，像素办公室成为米娅的专属工作看板——一个可以实时展示 AI 后台任务执行状态的本地可视化界面。
+**当前状态：** 代码骨架和核心功能仍基于原项目，改造主要集中在安全剥离与本地化适配。未来计划在此基础上继续开发，尤其是**本地多智能体协作界面**。
+
+> 感谢 Star-Office-UI 原作者的出色工作。如无原项目的基础，本本地化版本不可能存在。
 
 ---
 
@@ -117,16 +120,15 @@ export FLASK_SECRET_KEY="至少24字符的随机字符串"
 ```
 mia-office-ui/
 ├── backend/          # Python Flask 后端 + 状态服务
-│   ├── app.py      # 主服务入口
-│   ├── state.json  # 实时状态文件（轮询读取）
-│   └── ...
-├── frontend/       # HTML/CSS/JS 前端（纯静态）
+│   ├── app.py        # 主服务入口
+│   └── requirements.txt
+├── frontend/         # HTML/CSS/JS 前端（纯静态）
 │   ├── index.html
-│   └── ...
-├── desktop-pet/    # 桌面宠物模式（可选）
-├── assets/         # 像素美术素材
-├── set_state.py    # 状态切换 CLI 工具
-└── README.md       # 本文件
+│   └── game.js
+├── desktop-pet/      # 桌面宠物模式（可选）
+├── assets/           # 像素美术素材
+├── set_state.py      # 状态切换 CLI 工具
+└── README.md         # 本文件
 ```
 
 ---
